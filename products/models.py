@@ -8,53 +8,50 @@ class Category(models.Model):
         ('Квартира', 'Квартира'),
         ('Новостройка', 'Новостройка'),
     )
-
-    title = models.CharField(default='Дом', choices=category)
+    title = models.CharField(default='Дом', choices=category, max_length=50)
 
     def __str__(self):
         return self.title
 
 
 class House(models.Model):
-    title = models.CharField(max_length=50)
+    image = models.ImageField(max_length=50)
     price = models.IntegerField()
     description = models.TextField()
     category = models.ManyToManyField(Category)
-    count = (
-        ('1', '2'),
+    rooms_count = (
+        ('1', '1'),
         ('2', '2'),
         ('3', '3'),
         ('4', '4'),
         ('5', '5'),
     )
-    rooms = models.CharField(default='3', choices=category)
+    rooms = models.CharField(default='3', choices=rooms_count, max_length=50)
     floor_count = (
         ('1', '2'),
         ('2', '2'),
         ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
+        ('4', '4')
     )
-    floor = models.CharField(default='3', choices=floor_count)
+    floor = models.CharField(default='3', choices=floor_count, max_length=50)
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.category}'
 
 
-class Apps(models.Model):
-    title = models.CharField(max_length=55)
+class Apartment(models.Model):
+    image = models.ImageField()
     price = models.IntegerField()
     description = models.TextField()
     category = models.ManyToManyField(Category)
-
-    count = (
+    rooms_count = (
         ('1', '2'),
         ('2', '2'),
         ('3', '3'),
         ('4', '4'),
         ('5', '5'),
     )
-    rooms = models.CharField(default='3', choices=category)
+    rooms = models.CharField(default='3', choices=rooms_count, max_length=50)
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.category}'
