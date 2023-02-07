@@ -4,7 +4,8 @@ from . import swagger
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/users/', include('users.urls'))
+    path('api/v1/users/', include('users.urls')),
+    path('api/v1/products/', include('products.urls'))
 ]
 
 urlpatterns += swagger.urlpatterns

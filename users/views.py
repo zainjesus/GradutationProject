@@ -26,5 +26,3 @@ class LoginAPIView(APIView):
             return Response(data={'key': token.key})
         return Response(data={'error': 'Incorrect login or password!'},
                         status=status.HTTP_401_UNAUTHORIZED)
-
-dfg = 2
