@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     category = (
         ('Дом', 'Дом'),
-        ('Квартира', 'Квартира'),
-        ('Новостройка', 'Новостройка'),
+        ('Квартира', 'Квартира')
     )
     title = models.CharField(default='Дом', choices=category, max_length=50)
 
