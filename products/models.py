@@ -6,7 +6,6 @@ class Category(models.Model):
     category = (
         ('Дом', 'Дом'),
         ('Квартира', 'Квартира'),
-        ('Новостройка', 'Новостройка'),
     )
     title = models.CharField(default='Дом', choices=category, max_length=50)
 
@@ -15,9 +14,9 @@ class Category(models.Model):
 
 
 class House(models.Model):
-    image = models.ImageField(max_length=50)
     price = models.IntegerField()
     description = models.TextField()
+    street = models.CharField(max_length=20)
     category = models.ManyToManyField(Category)
     rooms_count = (
         ('1', '1'),
@@ -40,9 +39,17 @@ class House(models.Model):
 
 
 class Apartment(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
     price = models.IntegerField()
     description = models.TextField()
+    floor_count = (
+        ('1', '2'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4')
+    )
+    floor = models.CharField(default='3', choices=floor_count, max_length=50)
+    street = models.CharField(max_length=20)
     category = models.ManyToManyField(Category)
     rooms_count = (
         ('1', '2'),
