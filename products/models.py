@@ -62,5 +62,3 @@ class Product(models.Model):
         ('Лоджия', 'Лоджия')
     ), max_length=10)
     description = models.CharField(max_length=255)
-
-
