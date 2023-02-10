@@ -3,5 +3,5 @@ from .views import *
 
 
 urlpatterns = [
-    path('detail/<int:id>/', ProductDetailDeleteAPIView.as_view())
+    path('detail/<int:id>/', ProductDetailAPIView.as_view())
 ]

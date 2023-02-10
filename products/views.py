@@ -6,10 +6,10 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from rest_framework.generics import RetrieveDestroyAPIView
+from rest_framework.generics import RetrieveAPIView
 
 
-class ProductDetailDeleteAPIView(RetrieveDestroyAPIView):
+class ProductDetailAPIView(RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'id'
