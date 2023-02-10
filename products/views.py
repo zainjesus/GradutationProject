@@ -9,11 +9,13 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import RetrieveAPIView, ListAPIView
 
 
-class ProductView(ListAPIView):
+class ProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 
 class ProductDetailAPIView(RetrieveAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductDetailSerializer
+    serializer_class = ProductSerializer
     lookup_field = 'id'
+
