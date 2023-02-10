@@ -1,6 +1,7 @@
 from django.contrib import admin
-from products.models import Category, House, Apartment
+from products.models import Type, Area, Rooms, Product
 
-admin.site.register(Category)
-admin.site.register(House)
-admin.site.register(Apartment)
+admin.site.register(Type)
+admin.site.register(Area)
+admin.site.register(Rooms)
+admin.site.register(Product)
