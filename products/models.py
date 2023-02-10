@@ -63,8 +63,4 @@ class Product(models.Model):
     ), max_length=10)
     description = models.CharField(max_length=255)
 
-    # def __str__(self):
-    #     return self.type
-
-
 
