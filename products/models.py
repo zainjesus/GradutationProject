@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class Category(models.Model):
@@ -17,7 +17,7 @@ class House(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     street = models.CharField(max_length=20)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, blank=True)
     rooms_count = (
         ('1', '1'),
         ('2', '2'),

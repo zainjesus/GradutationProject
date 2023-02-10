@@ -13,5 +13,8 @@ update_retrieve_destroy = {
 urlpatterns = [
     path('house/', HouseView.as_view()),
     path('house/<int:id>/', HouseDetailView.as_view()),
-    path('apartament/', HouseView.as_view())
+    path('apartament/', ApartmentView.as_view()),
+    path('apartament/<int:id>/', ApartmentDetailView.as_view()),
+    path('category/', CategoryView.as_view()),
+    path('create/', Creating_Ad.as_view())
 ]
