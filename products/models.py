@@ -1,64 +1,66 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class Category(models.Model):
-    category = (
+class Type(models.Model):
+    title = models.CharField(choices=(
         ('Дом', 'Дом'),
         ('Квартира', 'Квартира'),
-    )
-    title = models.CharField(default='Дом', choices=category, max_length=50)
+        ('Новостройка', 'Новостройка')
+    ), max_length=50)
 
     def __str__(self):
         return self.title
 
 
-class House(models.Model):
-    price = models.IntegerField()
-    description = models.TextField()
-    street = models.CharField(max_length=20)
-    category = models.ManyToManyField(Category, blank=True)
-    rooms_count = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-    )
-    rooms = models.CharField(default='3', choices=rooms_count, max_length=50)
-    floor_count = (
-        ('1', '2'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4')
-    )
-    floor = models.CharField(default='3', choices=floor_count, max_length=50)
+class Area(models.Model):
+    title = models.CharField(choices=(
+        ('Первомайский', 'Первомайский'),
+        ('Октябрьский', 'Октябрьский'),
+        ('Свердловский', 'Свердловский'),
+        ('Ленинский', 'Ленинский ')
+    ), max_length=50)
 
     def __str__(self):
-        return f'{self.category}'
+        return self.title
 
 
-class Apartment(models.Model):
-    image = models.ImageField(null=True, blank=True)
-    price = models.IntegerField()
-    description = models.TextField()
-    floor_count = (
-        ('1', '2'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4')
-    )
-    floor = models.CharField(default='3', choices=floor_count, max_length=50)
-    street = models.CharField(max_length=20)
-    category = models.ManyToManyField(Category)
-    rooms_count = (
-        ('1', '2'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-    )
-    rooms = models.CharField(default='3', choices=rooms_count, max_length=50)
+class Rooms(models.Model):
+    title = models.CharField(choices=(
+        ('Студия', 'Студия'),
+        ('Однокомнатная', 'Однокомнатная'),
+        ('Двухкомнатная', 'Двухкомнатная'),
+        ('Трехкомнатная', 'Трехкомнатная'),
+        ('Четырехкомнатная', 'Четырехкомнатная'),
+        ('Пятикомнатная', 'Пятикомнатная'),
+        ('Шестикомнатная', 'Шестикомнатная')
+    ), max_length=50)
 
     def __str__(self):
-        return f'{self.category}'
+        return self.title
+
+
+class Product(models.Model):
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE)
+    rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE)
+    image = models.ImageField()
+    square = models.FloatField()
+    living_space = models.FloatField()
+    ceiling_height = models.FloatField()
+    floor = models.IntegerField()
+    repair = models.CharField(max_length=100)
+    furniture = models.CharField(max_length=100)
+    bathroom = models.CharField(max_length=100)
+    window = models.CharField(max_length=100)
+    warm_floor = models.CharField(choices=(
+        ('Да', 'Да'),
+        ('Нет', 'Нет')
+    ), max_length=10)
+    balcony = models.CharField(choices=(
+        ('Балкон', 'Балкон'),
+        ('Лоджия', 'Лоджия')
+    ), max_length=10)
+    description = models.CharField(max_length=255)
+
+
