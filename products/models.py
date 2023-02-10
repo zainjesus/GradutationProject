@@ -45,6 +45,7 @@ class Product(models.Model):
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE)
     image = models.ImageField()
+    price = models.IntegerField(null=True)
     square = models.FloatField()
     living_space = models.FloatField()
     ceiling_height = models.FloatField()
