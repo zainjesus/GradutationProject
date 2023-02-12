@@ -8,7 +8,7 @@ class CharFiltersInFilter(filters.CharFilter, filters.BaseInFilter):
 
 
 class HouseFilter(filters.FilterSet):
-    type = CharFiltersInFilter(field_name='type__title', lookup_expr='in')
+    type = filters.NumberFilter
     price = filters.RangeFilter()
     square = filters.RangeFilter()
     area = filters.NumberFilter

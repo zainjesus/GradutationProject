@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Type(models.Model):
     title = models.CharField(choices=(
         ('Дом', 'Дом'),
@@ -45,6 +46,7 @@ class Product(models.Model):
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE, null=True)
     image = models.ImageField(null=True, blank=True)
+    video = models.CharField(max_length=100, null=True)
     price = models.PositiveBigIntegerField(null=True, blank=True)
     phone_number = PhoneNumberField()
     square = models.CharField(max_length=30)
