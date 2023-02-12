@@ -1,6 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
-
+from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 class Type(models.Model):
     title = models.CharField(choices=(
@@ -41,14 +41,14 @@ class Rooms(models.Model):
 
 
 class Product(models.Model):
-    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
-    rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    image = models.ImageField()
-    price = models.IntegerField(null=True)
-    square = models.FloatField()
-    living_space = models.FloatField()
+    rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(null=True, blank=True)
+    price = models.PositiveBigIntegerField(null=True, blank=True)
+    phone_number = PhoneNumberField()
+    square = models.CharField(max_length=30)
+    living_space = models.FloatField(null=True)
     ceiling_height = models.FloatField()
     floor = models.IntegerField()
     repair = models.CharField(max_length=100)
@@ -58,9 +58,9 @@ class Product(models.Model):
     warm_floor = models.CharField(choices=(
         ('Да', 'Да'),
         ('Нет', 'Нет')
-    ), max_length=10)
+    ), max_length=50)
     balcony = models.CharField(choices=(
         ('Балкон', 'Балкон'),
         ('Лоджия', 'Лоджия')
-    ), max_length=10)
+    ),max_length=50)
     description = models.CharField(max_length=255)

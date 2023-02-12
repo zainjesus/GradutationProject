@@ -1,6 +1,6 @@
 from django_filters import rest_framework as filters
 
-from products.models import House
+from products.models import Product
 
 
 class CharFiltersInFilter(filters.CharFilter, filters.BaseInFilter):
@@ -8,9 +8,13 @@ class CharFiltersInFilter(filters.CharFilter, filters.BaseInFilter):
 
 
 class HouseFilter(filters.FilterSet):
-    category = CharFiltersInFilter(field_name='category__title', lookup_expr='in')
+    type = CharFiltersInFilter(field_name='type__title', lookup_expr='in')
     price = filters.RangeFilter()
+    square = filters.RangeFilter()
+    area = filters.NumberFilter
+    rooms = filters.NumberFilter
+    floor = filters.NumberFilter
 
     class Meta:
-        model = House
-        fields = ['category', 'price']
+        model = Product
+        fields = ['type', 'price', 'area', 'rooms', 'square', 'floor']
