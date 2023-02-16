@@ -15,6 +15,7 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 500
 
 
+
 class ProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
