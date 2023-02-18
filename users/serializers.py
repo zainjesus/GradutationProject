@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
+from .models import *
+from django.contrib.auth.models import User
 
 
 class UserValidateSerializer(serializers.Serializer):
@@ -15,3 +17,33 @@ class UserCreateSerializer(UserValidateSerializer):
         except User.DoesNotExist:
             return username
         raise ValidationError('User already exists!')
+
+
+class UserSer(serializers.ModelSerializer):
+    """Сериализация пользователя"""
+
+    class Meta:
+        model = User
+        fields = ("username", "email")
+
+class ProfileSer(serializers.ModelSerializer):
+    """Профиль пользователя"""
+    user = UserSer()
+
+    class Meta:
+        model = Profile
+        fields = ("user", "avatar", "email", "phone", "first_name", "last_name")
+
+class ProfileUpdateSer(serializers.ModelSerializer):
+    """Редактирование профиля пользователя"""
+
+    class Meta:
+        model = Profile
+        fields = ("avatar", "email", "phone", "first_name", "last_name")
+
+class AvatarUpdateSer(serializers.ModelSerializer):
+    """Редактирование аватар ользователя"""
+
+    class Meta:
+        model = Profile
+        fields = ("avatar",)
