@@ -1,6 +1,4 @@
 from django.urls import path
-from products import views
-from users.views import LoginAPIView, RegistrationAPIView
 from . import views
 from users.views import LoginAPIView, RegistrationAPIView, FavoriteAPIView
 

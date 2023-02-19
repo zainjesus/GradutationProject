@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
 from .models import *
 from django.contrib.auth.models import User
@@ -28,6 +27,7 @@ class UserSer(serializers.ModelSerializer):
         model = User
         fields = ("username", "email")
 
+
 class ProfileSer(serializers.ModelSerializer):
     """Профиль пользователя"""
     user = UserSer()
@@ -36,6 +36,7 @@ class ProfileSer(serializers.ModelSerializer):
         model = Profile
         fields = ("user", "avatar", "email", "phone", "first_name", "last_name")
 
+
 class ProfileUpdateSer(serializers.ModelSerializer):
     """Редактирование профиля пользователя"""
 
@@ -43,12 +44,15 @@ class ProfileUpdateSer(serializers.ModelSerializer):
         model = Profile
         fields = ("avatar", "email", "phone", "first_name", "last_name")
 
+
 class AvatarUpdateSer(serializers.ModelSerializer):
     """Редактирование аватар ользователя"""
 
     class Meta:
         model = Profile
         fields = ("avatar",)
+
+
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
