@@ -50,11 +50,11 @@ class AvatarUpdateSer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ("avatar",)
+        fields = ("profile_pic",)
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
-        fields = '__all__'
+        fields = 'user product'.split()
 

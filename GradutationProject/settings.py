@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_+rl#urs9gxe+nnomd)k2e+36@7mb9l7!0%-!n97)$m)x+(^#y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'GradutationProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3a',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
