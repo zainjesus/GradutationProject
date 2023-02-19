@@ -6,6 +6,12 @@ from .serializers import UserValidateSerializer, UserCreateSerializer
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 
+from rest_framework import generics
+from rest_framework import permissions
+
+from .models import Profile
+from .serializers import ProfileSer, ProfileUpdateSer, AvatarUpdateSer
+
 
 class RegistrationAPIView(APIView):
     def post(self, request):
@@ -26,3 +32,26 @@ class LoginAPIView(APIView):
             return Response(data={'key': token.key})
         return Response(data={'error': 'Incorrect login or password!'},
                         status=status.HTTP_401_UNAUTHORIZED)
+
+class ProfileDetail(generics.RetrieveAPIView):
+    """Профиль пользователя"""
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSer
+
+
+class ProfileUpdateView(generics.UpdateAPIView):
+    """Редактирование профиля пользователя"""
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileUpdateSer
+
+
+class AvatarProfileUpdateView(generics.UpdateAPIView):
+    """Редактирование аватара профилья пользователя"""
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Profile.objects.all()
+    serializer_class = AvatarUpdateSer
+
+
+
