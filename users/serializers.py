@@ -4,6 +4,8 @@ from rest_framework.exceptions import ValidationError
 from .models import *
 from django.contrib.auth.models import User
 
+from users.models import Favorite
+
 
 class UserValidateSerializer(serializers.Serializer):
     username = serializers.CharField(min_length=3, max_length=15)
@@ -47,3 +49,8 @@ class AvatarUpdateSer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ("avatar",)
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = '__all__'
+

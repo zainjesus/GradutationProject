@@ -3,14 +3,14 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-
+from products.models import Product
 
 
 class Profile(models.Model):
-    user=models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    bio=models.TextField(null=True, blank=True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField(null=True, blank=True)
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
-    email  = models.EmailField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=50, null=True, blank=True)
     phone = models.CharField("Контактный номер", max_length=13)
     first_name = models.CharField("Имя", max_length=50)
     last_name = models.CharField("Фамилия", max_length=50, blank=True, null=True)
@@ -30,6 +30,7 @@ class Profile(models.Model):
         verbose_name = "Профиль"
         verbose_name_plural = "Профиля"
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     """Создание профиля пользователя при регистрации"""
@@ -41,3 +42,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
