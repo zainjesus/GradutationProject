@@ -13,7 +13,6 @@ from rest_framework import permissions
 from .models import Profile
 from .serializers import ProfileSer, ProfileUpdateSer, AvatarUpdateSer
 
-
 class RegistrationAPIView(APIView):
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
