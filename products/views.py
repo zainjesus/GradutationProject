@@ -3,9 +3,16 @@ from rest_framework import status
 from rest_framework.decorators import APIView
 from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 from products.filters import HouseFilter
 from products.serializers import *
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 500
 
 
 class ProductListAPIView(ListAPIView):
