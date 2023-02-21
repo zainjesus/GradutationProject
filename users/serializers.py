@@ -34,7 +34,7 @@ class ProfileSer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ("user", "avatar", "email", "phone", "first_name", "last_name")
+        fields = ("user", "profile_pic", "email", "phone", "first_name", "last_name")
 
 
 class ProfileUpdateSer(serializers.ModelSerializer):
@@ -42,7 +42,7 @@ class ProfileUpdateSer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ("avatar", "email", "phone", "first_name", "last_name")
+        fields = ("profile_pic", "email", "phone", "first_name", "last_name")
 
 
 class AvatarUpdateSer(serializers.ModelSerializer):
