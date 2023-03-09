@@ -27,7 +27,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'type', 'image', 'price', 'floor', 'area', 'square')
+        fields = ('id', 'type', 'image', 'price', 'floor', 'area', 'square', 'address')
 
     def get_type_list(self, product_object):
         return [product_object.type.title]
@@ -45,7 +45,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            'id', 'type', 'area', 'rooms', 'image', 'video', 'price', 'phone_number', 'square', 'living_space',
+            'id', 'type', 'area', 'rooms', 'image', 'video', 'price','address','phone_number', 'square', 'living_space',
             'ceiling_height', 'floor',
             'repair',
             'furniture', 'bathroom', 'window', 'warm_floor', 'balcony', 'description')
@@ -67,7 +67,7 @@ class CreateAdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            'id', 'type_list', 'type', 'area', 'rooms', 'image', 'video', 'price', 'phone_number', 'square', 'living_space',
+            'id', 'type_list', 'type', 'area', 'rooms', 'image', 'video', 'price', 'address', 'phone_number', 'square', 'living_space',
             'ceiling_height', 'floor',
             'repair',
             'furniture', 'bathroom', 'window', 'warm_floor', 'balcony', 'description')
@@ -84,6 +84,7 @@ class ProductValidationSerializer(serializers.Serializer):
     price = serializers.IntegerField(max_value=500000000)
     square = serializers.CharField(max_length=15)
     image = serializers.ImageField()
+    address = serializers.CharField(max_length=100)
     video = serializers.CharField(max_length=100)
     living_space = serializers.CharField(max_length=500)
     ceiling_height = serializers.CharField(max_length=500)

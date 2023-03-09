@@ -77,4 +77,3 @@ class FavoriteAPIView(APIView):
             favorite = Favorite.objects.create(session_key=session_key, product=product)
         serializer = FavoriteSerializer(favorite)
         return Response(serializer.data)
-
