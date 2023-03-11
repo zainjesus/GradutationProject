@@ -48,6 +48,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
     video = models.CharField(max_length=100, null=True)
     price = models.PositiveBigIntegerField(null=True, blank=True)
+    address = models.CharField(max_length=50,null=True)
     phone_number = PhoneNumberField()
     square = models.CharField(max_length=30)
     living_space = models.FloatField(null=True)
