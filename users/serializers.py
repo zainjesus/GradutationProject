@@ -30,7 +30,7 @@ class UserSer(serializers.ModelSerializer):
 
 class ProfileSer(serializers.ModelSerializer):
     """Профиль пользователя"""
-    user = UserSer()
+    user = UserSer().fields.get('email')
 
     class Meta:
         model = Profile
