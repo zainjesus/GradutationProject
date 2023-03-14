@@ -46,7 +46,7 @@ class Product(models.Model):
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     rooms = models.ForeignKey(Rooms, on_delete=models.CASCADE, null=True)
     image = models.ImageField(null=True, blank=True)
-    video = models.CharField(max_length=100, null=True)
+    video = models.CharField(max_length=100, blank=True, null=True)
     price = models.PositiveBigIntegerField(null=True, blank=True)
     address = models.CharField(max_length=50, null=True)
     phone_number = PhoneNumberField()
